@@ -7,13 +7,15 @@ version '1.0'
 
 test {
     useJUnitPlatform()
+     testLogging.showStandardStreams = true
 }
 
 repositories {
-    mavenCentral()
+  mavenCentral()
     maven {
         url "https://oss.sonatype.org/content/repositories/snapshots/"
     }
+    mavenLocal()
 }
 
 jar {
@@ -27,21 +29,25 @@ jar {
 compileTestJava.options.compilerArgs.add '-parameters'
 
 dependencies {
-    // Use JUnit Jupiter API for testing.
-    testImplementation  'org.junit.jupiter:junit-jupiter-api:5.6.0'
+testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.7.2'
 
-    // Module "junit-jupiter-params" of JUnit 5.
-    testImplementation   group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.6.0'
 
-    // Use JUnit Jupiter Engine for testing.
-    testImplementation   'org.junit.jupiter:junit-jupiter-engine:5.6.0'
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-params
+testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.7.2'
+
+
+    // https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine
+testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.7.2'
+
 
     implementation 'io.testproject:java-sdk:1.1.0-RELEASE'
     
     // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.41.0'
-    
-
+  // Selenium
+//implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'  
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver
+implementation group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '4.1.0'
     
 
 }
